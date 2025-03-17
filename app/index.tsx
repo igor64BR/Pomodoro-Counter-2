@@ -1,6 +1,10 @@
-import { Text, View } from "react-native";
+import { Button, View } from "react-native";
+import CounterDisplay from "@/app/components/CounterDisplay";
+import { useState } from "react";
 
 export default function Index() {
+  const [isRunning, setIsRunning] = useState(false);
+
   return (
     <View
       style={{
@@ -9,7 +13,14 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <CounterDisplay
+        countDownMinutes={1}
+        onTimerEnd={() => {
+          window.alert("Timer ended");
+        }}
+        isRunning={isRunning}
+      />
+      <Button title={'Toggle Run'} onPress={() => setIsRunning(!isRunning)}/>
     </View>
   );
 }
